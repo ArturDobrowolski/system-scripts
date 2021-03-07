@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) setsid "$TERMINAL" -e alsamixer & ;;
+	2) setsid "$TERMINAL" -e pamix & ;;
+	3) setsid "$TERMINAL" -e pamix & ;;
+esac
+
+#volstat="$(pactl list sinks)"
+volstat="$(amixer -M get Master)"
+
+echo $volstat | grep -q "\[off\]" && printf "ﱝ\\n" && exit
+
+#volume="$(echo "$volstat" | grep -o "[0-9]\+%" | sed "s/%//")"
+volume="$(pamixer --get-volume)"
+
+if [ "$volume" -gt "70" ]; then
+	icon=""
+elif [ "$volume" -lt "20" ]; then
+	icon=""
+else
+	icon=""
+fi
+
+printf "%s %s%%\\n" "$icon" "$volume"

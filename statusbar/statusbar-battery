@@ -1,0 +1,22 @@
+#!/bin/sh
+
+bat0=/sys/class/power_supply/BAT0
+bat1=/sys/class/power_supply/BAT1
+
+[ -d $bat0 ] && status_bat0="$(sed "s/[Uu]nknown//;s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging//;s/[Uu]nknown/ /;s/[Ff]ull//" "$bat0"/status)" && cap_bat0="$(cat $bat0/capacity)"
+
+[ -d $bat1 ] && status_bat1="$(sed "s/[Uu]nknown//;s/[Dd]ischarging//;s/[Nn]ot charging//;s/[Cc]harging//;s/[Uu]nknown//;s/[Ff]ull//" "$bat1"/status)" && cap_bat1="$(cat $bat1/capacity)"
+
+cap="$(echo "($cap_bat0 + $cap_bat1) / 2" | bc)"
+icon=" "
+
+[ "$cap_bat0" -gt "97" ] && [ "$cap_bat1" -gt "90" ] && cap=100 && icon=""
+
+[ "$status_bat0" = "" ] && icon=""
+[ "$status_bat1" = "" ] && icon=""
+
+echo "$icon $cap%"
+
+case $BUTTON in
+	1|2|3) notify-send "Battery:" "1: $cap_bat0% $status_bat0  \n2: $cap_bat1% $status_bat1  " ;;
+esac

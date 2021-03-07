@@ -1,0 +1,26 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) setsid "$TERMINAL" -e calcurse ;;
+	#2) echo "RMB" ;;
+	#3) echo "MMB" ;;
+esac
+
+hour=`date '+%I'`
+
+case $hour in
+	"00" | "12") clock_icon='' ;;
+	"01" | "13") clock_icon='' ;;
+	"02" | "14") clock_icon='' ;;
+	"03" | "15") clock_icon='' ;;
+	"04" | "16") clock_icon='' ;;
+	"05" | "17") clock_icon='' ;;
+	"06" | "18") clock_icon='' ;;
+	"07" | "19") clock_icon='' ;;
+	"08" | "20") clock_icon='' ;;
+	"09" | "21") clock_icon='' ;;
+	"10" | "22") clock_icon='' ;;
+	"11" | "23") clock_icon='' ;;
+esac
+
+date '+%a, %d %b %Y %H:%M'" $clock_icon"

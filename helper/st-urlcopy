@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xurls | sort -u | dmenu -p "Copy which link?" -l 10 | { read url; [ ! -z $url ] && echo "$url" | xclip -sel clip && notify-send " Link copied to clipboard" "$url"; }

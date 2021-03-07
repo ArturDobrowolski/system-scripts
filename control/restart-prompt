@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ans="$(echo -e "No\nYes" | dmenu -i -p "Reboot?")"
+
+[ "$ans" = "Yes" ] && reboot

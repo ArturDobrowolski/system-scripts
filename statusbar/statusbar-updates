@@ -1,0 +1,13 @@
+#!/bin/sh
+
+avail="$(cat /tmp/.updates)"
+count="$(cat /tmp/.updates | wc -l)"
+
+[ "$count" -eq "0" ] && avail="None"
+
+case $BUTTON in
+	1) notify-send "Updates available:" "$avail" ;;
+	2|3) setsid "$TERMINAL" -e yay -Syu && sleep 5 && $LOCAL_BIN_SYS/pacman_sync ;;
+esac
+
+echo " $count"

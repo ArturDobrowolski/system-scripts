@@ -1,0 +1,15 @@
+#!/bin/sh
+
+entry="$(fd . "$PASSWORD_STORE_DIR" | grep '.*.gpg$' | sed 's/.*password-store\///' | dmenu -i -c -l 15 -p "Choose entry:")"
+
+[ -z "$entry" ] && exit 0
+
+field="$(echo -e "Password\nUsername\n" | dmenu -p "Copy which field?" -l 2)"
+
+pass_entry="$(echo $entry | sed -e 's/.gpg$//')"
+
+case $field in
+	"Password" ) content="$(pass show "$pass_entry" -c1 &)" ;;
+	"Username" ) content="$(pass show "$pass_entry" -c2 &)" ;;
+	* ) exit 0 ;;
+esac

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+setxkbmap pl
+xcompmgr &
+dunst &
+dwmblocks &
+redshift -l 52.40692:16.92993 &
+xbindkeys -f ~/.config/xbindkeysrc
+xset r rate 330 50
+pulseaudio --start
+fetch-news &
+set-wallpaper &
+
+dp1="$(xrandr | grep -c "DP1 connected")"
+dp2="$(xrandr | grep -c "DP2 connected")"
+edp1="$(xrandr | grep -c "eDP1 connected")"
+
+[ "$dp1"=1 ] && [ "$dp2"=1 ] && xrandr --output DP1 --mode 1920x1080 --auto --output DP2 --mode 1920x1080 --right-of DP1 --output eDP1 --off && exit
+
+[ "$dp1"=1 ] && xrandr --output eDP1 --off --output DP1 --mode 1920x1080 --auto --output DP2 --off && exit
+
+[ "$dp1"=1 ] && xrandr --output eDP1 --off --output DP1 --off --output DP2 --mode 1920x1080 --auto && exit
+
+[ "$edp1"=1 ] && xrandr --output eDP1 --mode 1366x768 --auto --output DP1 --off --output DP2 --off && exit
+

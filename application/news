@@ -1,0 +1,4 @@
+#!/bin/sh
+
+newsboat
+pkill -RTMIN+15 dwmblocks

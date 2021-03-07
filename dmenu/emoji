@@ -1,0 +1,5 @@
+#!/bin/sh
+
+emoji="$(cat $XDG_CONFIG_HOME/emoji | dmenu -i -l 10 -p "Choose emoji to copy" | cut -f 1 -d ' ')"
+
+[ ! -z $emoji ] && echo -n "$emoji" | xclip -sel clip && notify-send "$emoji copied to clipboard"

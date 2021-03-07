@@ -1,0 +1,5 @@
+#!/bin/sh
+
+yay -Sy 1>/dev/null 2>/dev/null
+yay -Qu > /tmp/.updates
+pkill -RTMIN+2 dwmblocks

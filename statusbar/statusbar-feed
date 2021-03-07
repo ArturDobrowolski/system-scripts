@@ -1,0 +1,11 @@
+#!/bin/sh
+
+icon=""
+unread="$(newsboat -x print-unread | awk '{print $1}')"
+
+case $BUTTON in
+	1) setsid "$TERMINAL" -e "$RSS" ;;
+	2 | 3) setsid "$TERMINAL" -e "$EDITOR" "$XDG_CONFIG_HOME/newsboat/urls"
+esac
+
+echo "$icon $unread"

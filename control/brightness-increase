@@ -1,0 +1,9 @@
+#!/bin/sh
+
+step="10"
+current="$(xbacklight | cut -f 1 -d .)"
+target="$(echo "$current" + "$step" | bc)"
+
+echo $target
+xbacklight -set "$target"
+pkill -RTMIN+11 dwmblocks

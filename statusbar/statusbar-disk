@@ -1,0 +1,5 @@
+#!/bin/sh
+
+output="$(df -h | grep /home | awk '{print $4 "/" $2}')"
+icon=""
+echo "$icon $output"

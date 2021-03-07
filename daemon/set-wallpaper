@@ -1,0 +1,11 @@
+#!/bin/sh
+
+wp_dir="$PICS/wallpapers/winter"
+wp_interval=300
+
+while true; do
+	wp="$(ls $wp_dir | sort -R | head -n 1)"
+
+	feh --bg-scale "$wp_dir/$wp"
+	sleep $wp_interval
+done

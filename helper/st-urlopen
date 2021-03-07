@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xurls | sort -u | dmenu -p "Follow which link?" -l 10 | { read url ; [ ! -z $url ] && notify-send " Opening link..." "$url" && "$BROWSER" "$url"; }
