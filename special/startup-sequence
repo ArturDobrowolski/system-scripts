@@ -7,10 +7,10 @@ dwmblocks &
 redshift -l 52.40692:16.92993 &
 xbindkeys -f ~/.config/xbindkeysrc
 xset r rate 330 50
-pulseaudio --start
+pulseaudio --start &
 fetch-news &
 set-wallpaper &
-sudo zfs mount -a -l
+sudo zfs mount -a -l &
 
 dp1="$(xrandr | grep -c "DP1 connected")"
 dp2="$(xrandr | grep -c "DP2 connected")"
