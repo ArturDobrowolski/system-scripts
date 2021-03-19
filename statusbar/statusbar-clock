@@ -2,8 +2,6 @@
 
 case $BUTTON in
 	1) setsid "$TERMINAL" -e calcurse ;;
-	#2) echo "RMB" ;;
-	#3) echo "MMB" ;;
 esac
 
 hour=`date '+%I'`
@@ -23,4 +21,5 @@ case $hour in
 	"11" | "23") clock_icon='' ;;
 esac
 
-date '+%a, %d %b %Y %H:%M'" $clock_icon"
+date="$(date "+%a, %d %b %Y %H:%M")"
+printf "%s  %s " "$clock_icon" "$date"
