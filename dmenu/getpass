@@ -13,6 +13,7 @@ if [ "$is_card" -gt "0" ]; then
 		"Card number") content="$(pass show "$pass_entry" -c1 &)" ;;
 		"Valid until") content="$(pass show "$pass_entry" -c2 &)" ;;
 		"CVV") content="$(pass show "$pass_entry" -c3 &)" ;;
+		* ) exit 0 ;;
 	esac
 
 else
