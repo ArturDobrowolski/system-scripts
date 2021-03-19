@@ -1,0 +1,6 @@
+#!/bin/sh
+
+binary="$(echo $1 | xxd -r -p | xxd -b)"
+echo $binary
+
+

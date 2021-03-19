@@ -10,7 +10,6 @@ xset r rate 330 50
 pulseaudio --start &
 fetch-news &
 set-wallpaper &
-sudo zfs mount -a -l &
 
 dp1="$(xrandr | grep -c "DP1 connected")"
 dp2="$(xrandr | grep -c "DP2 connected")"
