@@ -25,6 +25,6 @@ for battery in /sys/class/power_supply/BAT?; do
 done 
 
 capacity_combined=$(echo "$capacity_combined / $battery_count" | bc)
-if [ $capacity_combined -lt 200 ]; then
+if [ $capacity_combined -lt 20 ]; then
 	echo "⚠"
 fi
