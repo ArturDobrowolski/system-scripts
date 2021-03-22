@@ -1,5 +1,8 @@
 #!/bin/sh
 
+capacity_combined=0
+battery_count=0
+
 for battery in /sys/class/power_supply/BAT?; do
 	case "$(cat $battery/status)" in
 		"Full") status="" ;;
@@ -16,4 +19,12 @@ for battery in /sys/class/power_supply/BAT?; do
 	else	
 		printf "%s  %s " "$status" "$capacity"
 	fi
+
+	capacity_combined=$(echo "$capacity + $capacity_combined" | bc)
+	battery_count=$(echo "$battery_count + 1" | bc)
 done 
+
+capacity_combined=$(echo "$capacity_combined / $battery_count" | bc)
+if [ $capacity_combined -lt 100 ]; then
+	echo "⚠"
+fi
