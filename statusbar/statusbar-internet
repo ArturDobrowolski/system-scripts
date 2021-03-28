@@ -1,18 +1,18 @@
 #!/bin/sh
 
-#function get_ip {
-#	ipaddr="$(dig @resolver4.opendns.com myip.opendns.com +short)"
-#	notify-send " Connected" "IP: $ipaddr"
-#}
-#
-#case $BUTTON in
-#	1) get_ip ;;
-#esac
+function get_ip {
+	ipaddr="$(dig @resolver4.opendns.com myip.opendns.com +short)"
+	notify-send " Connected" "IP: $ipaddr"
+}
 
-#if nc -zw1 google.com 443; then
-#	connection=""
-#else
-#	connection=""
-#fi
+case $BUTTON in
+	1) get_ip ;;
+esac
 
-#echo "$connection"
+if nc -zw1 google.com 443; then
+	connection=""
+else
+	connection=""
+fi
+
+echo "$connection"

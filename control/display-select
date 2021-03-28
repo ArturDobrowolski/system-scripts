@@ -1,9 +1,6 @@
 #!/bin/sh
 
-#Options: builtin, builtin+VGA(DP2), builtin+DP(DP1) xrandr --output LVDS-1 --off --output VGA-1 --auto
-
 ans="$(echo -e "eDP\nDP\nVGA\neDP+DP\nDP+eDP\neDP+VGA\nVGA+eDP\nDP+VGA\nVGA+DP" | dmenu -p "Select display configuration:")"
-
 case $ans in 
 	"eDP") xrandr --output eDP1 --mode 1366x768 --auto --output DP1 --off --output DP2 --off ;;
 	"DP") xrandr --output eDP1 --off --output DP1 --mode 1920x1080 --auto --output DP2 --off ;;
@@ -15,3 +12,8 @@ case $ans in
 	"DP+VGA") xrandr --output eDP1 --off --output DP1 --mode 1920x1080 --auto --output DP2 --mode 1920x1080 --right-of DP1 ;;
 	"VGA+DP") xrandr --output eDP1 --off --output DP1 --mode 1920x1080 --auto --output DP2 --mode 1920x1080 --left-of DP1 ;;
 esac
+
+xset r rate 330 50
+setxkbmap -option caps:escape
+pkill set-wallpaper
+set-wallpaper &

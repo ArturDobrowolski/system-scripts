@@ -15,11 +15,11 @@ dp1="$(xrandr | grep -c "DP1 connected")"
 dp2="$(xrandr | grep -c "DP2 connected")"
 edp1="$(xrandr | grep -c "eDP1 connected")"
 
-[ "$dp1"=1 ] && [ "$dp2"=1 ] && xrandr --output DP1 --mode 1920x1080 --auto --output DP2 --mode 1920x1080 --right-of DP1 --output eDP1 --off && exit
+[ "$dp1"=1 ] && [ "$dp2"=1 ] && xrandr --output DP1 --auto --output DP2 --right-of DP1 --output eDP1 --off && exit
 
-[ "$dp1"=1 ] && xrandr --output eDP1 --off --output DP1 --mode 1920x1080 --auto --output DP2 --off && exit
+[ "$dp1"=1 ] && xrandr --output eDP1 --off --output DP1 --auto --output DP2 --off && exit
 
-[ "$dp1"=1 ] && xrandr --output eDP1 --off --output DP1 --off --output DP2 --mode 1920x1080 --auto && exit
+[ "$dp1"=1 ] && xrandr --output eDP1 --off --output DP1 --off --output DP2 --auto && exit
 
-[ "$edp1"=1 ] && xrandr --output eDP1 --mode 1366x768 --auto --output DP1 --off --output DP2 --off && exit
+[ "$edp1"=1 ] && xrandr --output eDP1 --auto --output DP1 --off --output DP2 --off && exit
 
